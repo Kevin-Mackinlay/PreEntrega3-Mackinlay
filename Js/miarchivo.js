@@ -28,8 +28,6 @@
 
 alert("Bienvenido a la tienda FUNGI");
 
-let nombreUsuario = prompt("Ingrese su nombre");
-
 const productos = [
   {
     nombre: "reishi",
@@ -46,7 +44,7 @@ const productos = [
     precio: 120,
   },
   {
-    nombre: "Melena de Leon",
+    nombre: "melena de Leon",
     precio: 180,
   },
 ];
