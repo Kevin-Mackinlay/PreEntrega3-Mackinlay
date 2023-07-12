@@ -122,24 +122,24 @@ while (seleccion != "no") {
 
 // verificarStock();
 
-class Producto {
-  constructor(nombre, precio, stock) {
-    this.nombre = nombre;
-    this.precio = precio;
-    this.stock = stock;
-  }
-  comprar() {
-    if (this.stock > 0) {
-      this.stock--;
-      console.log("tenemos stock");
-    } else {
-      console.log("no tenemos màs stock");
-    }
-  }
-}
+// class Producto {
+//   constructor(nombre, precio, stock) {
+//     this.nombre = nombre;
+//     this.precio = precio;
+//     this.stock = stock;
+//   }
+//   comprar() {
+//     if (this.stock > 0) {
+//       this.stock--;
+//       console.log("tenemos stock");
+//     } else {
+//       console.log("no tenemos màs stock");
+//     }
+//   }
+// }
 
-const producto1 = new Producto("cubensis", 1000, 10);
-console.log(producto1);
+// const producto1 = new Producto("cubensis", 1000, 10);
+// console.log(producto1);
 
-const producto2 = new Producto("portobello", 100, 5);
-console.log(producto2);
+// const producto2 = new Producto("portobello", 100, 5);
+// console.log(producto2);
