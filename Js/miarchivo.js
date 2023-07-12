@@ -26,6 +26,11 @@
 
 // }
 
+
+
+
+//SIMULADOR  ↓↓
+
 alert("Bienvenido a la tienda FUNGI");
 
 const productos = [
@@ -111,6 +116,12 @@ while (seleccion != "no") {
     break;
   }
 }
+
+
+
+//Esto es para añadir en el futuro Eugenia! ↓↓
+
+//Es la ultima actividad que nos dieron en clase, la deje comentada, se que no es una buena práctica.
 
 // function verificarStock() {
 //   if (producto.stock < 0) {
