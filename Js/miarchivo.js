@@ -32,20 +32,24 @@ const productos = [
   {
     nombre: "reishi",
     precio: 100,
+    stock: 3,
   },
 
   {
     nombre: "cordyceps",
     precio: 150,
+    stock: 4,
   },
 
   {
     nombre: "shiitake",
     precio: 120,
+    stock: 3,
   },
   {
     nombre: "melena de Leon",
     precio: 180,
+    stock: 5,
   },
 ];
 
@@ -60,7 +64,7 @@ while (seleccion !== "si" && seleccion != "no") {
 
 if (seleccion == "si") {
   alert("ok, estos son nuestros productos");
-  let losProductos = productos.map((producto) => producto.nombre + " " + producto.precio + "$");
+  let losProductos = productos.map((producto) => producto.nombre + " " + producto.precio + "$ " + producto.stock + " en stock");
   alert(losProductos.join(" - "));
 } else if (seleccion == "no") {
   alert("gracias por visitarnos!");
@@ -74,15 +78,19 @@ while (seleccion != "no") {
     switch (producto) {
       case "reishi":
         precio = 100;
+        stock = 10;
         break;
       case "cordyceps":
         precio = 150;
+        stock = 10;
         break;
       case "shiitake":
         precio = 120;
+        stock = 10;
         break;
       case "Melena de leon":
         precio = 180;
+        stock = 10;
         break;
       default:
         break;
@@ -103,3 +111,35 @@ while (seleccion != "no") {
     break;
   }
 }
+
+// function verificarStock() {
+//   if (producto.stock < 0) {
+//     alert("tenemos stock");
+//   } else {
+//     alert("no tenemos màs stock");
+//   }
+// }
+
+// verificarStock();
+
+class Producto {
+  constructor(nombre, precio, stock) {
+    this.nombre = nombre;
+    this.precio = precio;
+    this.stock = stock;
+  }
+  comprar() {
+    if (this.stock > 0) {
+      this.stock--;
+      console.log("tenemos stock");
+    } else {
+      console.log("no tenemos màs stock");
+    }
+  }
+}
+
+const producto1 = new Producto("cubensis", 1000, 10);
+console.log(producto1);
+
+const producto2 = new Producto("portobello", 100, 5);
+console.log(producto2);
