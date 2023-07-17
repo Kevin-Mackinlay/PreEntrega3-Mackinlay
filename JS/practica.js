@@ -1,7 +1,6 @@
 //Arrays
 
 // const numeros = [1,2,3,4,5,6,7,8,9];
- 
 
 //  for (let i = 0; i < 9 ; i++){
 //     console.log(numeros[i])
@@ -60,7 +59,6 @@
 //     console.log(listaNombres.length);
 // } while (listaNombres.length != cantidad)
 
- 
 // alert(listaNombres.join("\n"))
 
 // const listaNombres = [];
@@ -102,3 +100,36 @@
 //  eliminar('pedro');
 //  console.log(nombres);
 
+// const productos = [
+//   { id: 1, producto: "arroz" },
+//   { id: 2, producto: "fideo" },
+//   { id: 3, producto: "queso" },
+// ];
+
+// for (const producto of productos) {
+//     console.log(producto.id);
+//     console.log(producto.producto);
+// }
+
+class producto {
+  constructor(nombre, precio) {
+    this.nombre = nombre.toUpperCase();
+    this.precio = parseFloat(precio);
+    this.vendido = false;
+  }
+
+  sumaIva() {
+    this.precio = this.precio * 1.21;
+  }
+}
+
+const productos = [];
+
+productos.push(new Producto("lavandina", "200"));
+productos.push(new Producto("manteca", "180"));
+productos.push(new Producto("sal", "100"));
+
+for (const producto of productos) producto.sumaIva();
+console.log(productos);
+
+//este ultimo codigo no esta funcionando ver!!
