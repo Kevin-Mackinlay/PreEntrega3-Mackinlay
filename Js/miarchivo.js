@@ -26,32 +26,33 @@
 
 // }
 
-
-
-
 //SIMULADOR  ↓↓
 
 alert("Bienvenido a la tienda FUNGI");
 
 const productos = [
   {
+    id: 1,
     nombre: "reishi",
     precio: 100,
     stock: 3,
   },
 
   {
+    id: 2,
     nombre: "cordyceps",
     precio: 150,
     stock: 4,
   },
 
   {
+    id: 3,
     nombre: "shiitake",
     precio: 120,
     stock: 3,
   },
   {
+    id: 4,
     nombre: "melena de Leon",
     precio: 180,
     stock: 5,
@@ -69,31 +70,35 @@ while (seleccion !== "si" && seleccion != "no") {
 
 if (seleccion == "si") {
   alert("ok, estos son nuestros productos");
-  let losProductos = productos.map((producto) => producto.nombre + " " + producto.precio + "$ " + producto.stock + " en stock");
-  alert(losProductos.join(" - "));
+  let losProductos = productos.map((producto) => producto.id + "- " + producto.nombre + " - " + "$" + producto.precio + " - " + "(" + producto.stock + " en stock)");
+  alert(losProductos.join(" \n "));
 } else if (seleccion == "no") {
   alert("gracias por visitarnos!");
 }
 
 while (seleccion != "no") {
-  let producto = prompt("por favor elija el producto que desea para agregar al carrito");
+  let producto = prompt("por favor elija el producto que desea agregar al carrito");
   let precio = 0;
 
   if (producto == "reishi" || producto == "cordyceps" || producto == "shiitake" || producto == "Melena de leon") {
     switch (producto) {
       case "reishi":
+        id = 1
         precio = 100;
         stock = 10;
         break;
       case "cordyceps":
+        id = 2
         precio = 150;
         stock = 10;
         break;
       case "shiitake":
+        id = 3
         precio = 120;
         stock = 10;
         break;
       case "Melena de leon":
+        id = 4
         precio = 180;
         stock = 10;
         break;
@@ -111,13 +116,11 @@ while (seleccion != "no") {
   while (seleccion == "no") {
     alert("gracias por la compra!");
     carrito.forEach((carritoFinal) => {
-      console.log(`producto: ${carritoFinal.producto}, total a pagar por producto ${carritoFinal.precio}`);
+      console.log(`producto: ${carritoFinal.producto} total a pagar = $${carritoFinal.precio} pesos`);
     });
     break;
   }
 }
-
-
 
 //Esto es para añadir en el futuro Eugenia! ↓↓
 
