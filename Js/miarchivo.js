@@ -1,80 +1,22 @@
-//algoritmo con un condicional
-
-// alert('Bienvenido a la Vinoteca virtual!');
-// let edad = parseInt(prompt('Ingrese su edad'));
-// if(edad < 18){
-//     alert('usted es menor de edad y no puede realizar la compra');
-// }else{
-//     alert('usted es mayor de edad y puede realizar la compra');
-// }
-
-//algoritmo utilizando ciclo (while)
-
-// let insertText = prompt("Put a text");
-// while (insertText != "ESC") {
-//   alert("The user entered " + insertText);
-//   insertText = prompt("enter another text");
-// }
-
-//algoritmo utilizando (for)
-
-// alert('Bienvenido a los mejores masajes por orden de llegada')
-
-// for(i = 1 ; i <= 4; i++) {
-//    let insertNombre = prompt("ingrese un nombre")
-//    alert('turno Numero ' + i +  ' nombre:  ' +   insertNombre );
-
-// }
 
 //SIMULADOR  ↓↓
 
 alert("Bienvenido a la tienda FUNGI");
 
-class Producto {
-  constructor(id, nombre, precio, stock) {
-    this.id = id;
-    this.nombre = nombre;
-    this.precio = precio;
-    this.stock = stock;
-  }
+// class Producto {
+//   constructor(id, nombre, precio, stock) {
+//     this.id = id;
+//     this.nombre = nombre;
+//     this.precio = precio;
+//     this.stock = stock;
+//   }
 
-  // sumarProducto(precio) {
-  //   this.precio += precio;
-  // }
-}
+// }
 
-const mostrarProductos = (productos) => {
-  console.log("productos");
+// const mostrarCarrito = () => {
 
-  productos.forEach((producto) => console.log(producto));
-};
+// }
 
-const eliminarProducto = () => {
-  const productoCarrito = productoExistente();
-
-  if (!productoCarrito) return;
-
-  const confirmacion = confirm(`Estas seguro que deseas borrar este ${productoCarrito.nombre} de tu carrito?`);
-
-  if (confirmacion) {
-    productos = productos.filter((producto) => producto.nombre.toLowerCase() !== productoCarrito.nombre.toLowerCase());
-    mostrarProductos(productos);
-  } else {
-    alert("eliminacion cancelada");
-  }
-};
-
-const productoExistente = () => {
-  let nombreProducto = prompt("Ingrese nombre del producto");
-
-  let indice = productos.findIndex((producto) => producto.nombre.toLowerCase() === nombreProducto.toLowerCase());
-
-  if (indice === -1) {
-    return alert(`el producto ${nombreProducto} no existe`);
-  }
-
-  return productos[indice];
-};
 
 const productos = [
   {
@@ -107,6 +49,8 @@ const productos = [
 
 let carrito = [];
 let seleccion = prompt("Desea comprar algun producto si o no?");
+
+
 
 while (seleccion !== "si" && seleccion != "no") {
   alert("si o no?");
@@ -174,14 +118,58 @@ while (seleccion != "no") {
         alert("Ingrese una opcion correcta");
     }
 
-    // carrito.forEach((carritoFinal) => {
-    //   console.log(`producto: ${carritoFinal.producto} total a pagar = $${carritoFinal.precio} pesos`);
-    // });
-    // break;
+   
   }
 }
 
+
+const eliminarProducto = () => {
+  const productoCarrito = productoExistente();
+
+  if (!productoCarrito) return;
+
+  const confirmacion = confirm(`Estas seguro que deseas borrar este ${productoCarrito.nombre} de tu carrito?`);
+
+  if (confirmacion) {
+    productos = productos.filter((producto) => producto.nombre.toLowerCase() !== productoCarrito.nombre.toLowerCase());
+    mostrarProductos(productos);
+  } else {
+    alert("eliminacion cancelada");
+  }
+};
+
+const productoExistente = () => {
+  let nombreProducto = prompt("Ingrese nombre del producto");
+
+  let indice = productos.findIndex((producto) => producto.nombre.toLowerCase() === nombreProducto.toLowerCase());
+
+  if (indice === -1) {
+    return alert(`el producto ${nombreProducto} no existe`);
+  }
+
+  return productos[indice];
+};
+
 alert("Nos vemos pronto!");
+
+
+
+
+
+  // sumarProducto(precio) {
+  //   this.precio += precio;
+  // }
+
+ // carrito.forEach((carritoFinal) => {
+    //   console.log(`producto: ${carritoFinal.producto} total a pagar = $${carritoFinal.precio} pesos`);
+    // });
+    // break;
+
+// const mostrarProductos = (productos) => {
+//   console.log("productos");
+
+//   productos.forEach((producto) => console.log(producto));
+// };
 
 // const comprarProducto = () => {
 //   let nombre = prompt("Ingrese el producto que desea")
