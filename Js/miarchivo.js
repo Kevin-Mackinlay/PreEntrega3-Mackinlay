@@ -1,22 +1,48 @@
-
 //SIMULADOR  ↓↓
 
 alert("Bienvenido a la tienda FUNGI");
 
-// class Producto {
-//   constructor(id, nombre, precio, stock) {
-//     this.id = id;
-//     this.nombre = nombre;
-//     this.precio = precio;
-//     this.stock = stock;
-//   }
+class Producto {
+  constructor(id, nombre, precio, stock) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.stock = stock;
+  }
+}
 
-// }
+const mostrarProductos = (productos) => {
+  console.log("productos");
 
-// const mostrarCarrito = () => {
+  productos.forEach((producto) => console.log(producto));
+};
 
-// }
+const productoExistente = () => {
+  let nombreProducto = prompt("Ingrese nombre del producto");
 
+  let indice = productos.findIndex((producto) => producto.nombre.toLowerCase() === nombreProducto.toLowerCase());
+
+  if (indice === -1) {
+    return alert(`el producto ${nombreProducto} no existe`);
+  }
+
+  return productos[indice];
+};
+
+const eliminarProducto = () => {
+  const productoCarrito = productoExistente();
+
+  if (!productoCarrito) return;
+
+  const confirmacion = confirm(`Estas seguro que deseas borrar este ${productoCarrito.nombre} de tu carrito?`);
+
+  if (confirmacion) {
+    productos = productos.filter((producto) => producto.nombre.toLowerCase() !== productoCarrito.nombre.toLowerCase());
+    mostrarProductos(productos);
+  } else {
+    alert("eliminacion cancelada");
+  }
+};
 
 const productos = [
   {
@@ -48,9 +74,7 @@ const productos = [
 ];
 
 let carrito = [];
-let seleccion = prompt("Desea comprar algun producto si o no?");
-
-
+let seleccion = prompt("Desea comprar alguno de nuestros productos si o no?");
 
 while (seleccion !== "si" && seleccion != "no") {
   alert("si o no?");
@@ -66,7 +90,7 @@ if (seleccion == "si") {
 }
 
 while (seleccion != "no") {
-  let producto = prompt("por favor elija el producto que desea agregar al carrito");
+  let producto = prompt("Por favor elija el codigo del producto que desea agregar al carrito");
   let precio = 0;
   if (producto == "reishi" || producto == "cordyceps" || producto == "shiitake" || producto == "Melena de leon") {
     switch (producto) {
@@ -101,7 +125,7 @@ while (seleccion != "no") {
   seleccion = prompt("desea seguir comprando?");
 
   while (seleccion == "no") {
-    alert("Menú:\n1 - Mostrar productos\n2 - Eliminar un producto\n3 - Pagar");
+    alert("Menú:\n1 - Mostrar carrito\n2 - Eliminar un producto\n3 - Pagar\n4 - Salir");
     let opcion = parseInt(prompt("Ingrese una opción"));
 
     switch (opcion) {
@@ -114,62 +138,23 @@ while (seleccion != "no") {
       case 3:
         pagarProductos();
         break;
+      case 4:
+        salir();
+        break;
       default:
         alert("Ingrese una opcion correcta");
     }
-
-   
   }
 }
 
+// sumarProducto(precio) {
+//   this.precio += precio;
+// }
 
-const eliminarProducto = () => {
-  const productoCarrito = productoExistente();
-
-  if (!productoCarrito) return;
-
-  const confirmacion = confirm(`Estas seguro que deseas borrar este ${productoCarrito.nombre} de tu carrito?`);
-
-  if (confirmacion) {
-    productos = productos.filter((producto) => producto.nombre.toLowerCase() !== productoCarrito.nombre.toLowerCase());
-    mostrarProductos(productos);
-  } else {
-    alert("eliminacion cancelada");
-  }
-};
-
-const productoExistente = () => {
-  let nombreProducto = prompt("Ingrese nombre del producto");
-
-  let indice = productos.findIndex((producto) => producto.nombre.toLowerCase() === nombreProducto.toLowerCase());
-
-  if (indice === -1) {
-    return alert(`el producto ${nombreProducto} no existe`);
-  }
-
-  return productos[indice];
-};
-
-alert("Nos vemos pronto!");
-
-
-
-
-
-  // sumarProducto(precio) {
-  //   this.precio += precio;
-  // }
-
- // carrito.forEach((carritoFinal) => {
-    //   console.log(`producto: ${carritoFinal.producto} total a pagar = $${carritoFinal.precio} pesos`);
-    // });
-    // break;
-
-// const mostrarProductos = (productos) => {
-//   console.log("productos");
-
-//   productos.forEach((producto) => console.log(producto));
-// };
+// carrito.forEach((carritoFinal) => {
+//   console.log(`producto: ${carritoFinal.producto} total a pagar = $${carritoFinal.precio} pesos`);
+// });
+// break;
 
 // const comprarProducto = () => {
 //   let nombre = prompt("Ingrese el producto que desea")
