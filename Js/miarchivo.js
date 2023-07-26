@@ -12,18 +12,22 @@ class Producto {
 }
 
 const mostrarProductos = (productos) => {
-  console.log("productos");
+  console.clear();
 
   productos.forEach((producto) => console.log(producto));
 };
 
-const productoExistente = () => {
-  let nombreProducto = prompt("Ingrese nombre del producto");
+const productos = [new Producto(1, "reishi", 100, 3), new Producto(2, "cordyceps", 150, 5), new Producto(3, "shiitake", 120, 3), new Producto(4, "melena de leon", 200, 10)];
 
-  let indice = productos.findIndex((producto) => producto.nombre.toLowerCase() === nombreProducto.toLowerCase());
+mostrarProductos(productos);
+
+const productoExistente = () => {
+  let idProducto = parseInt(prompt("Ingrese el codigo del producto"));
+
+  let indice = productos.findIndex((producto) => producto.id === idProducto);
 
   if (indice === -1) {
-    return alert(`el producto ${nombreProducto} no existe`);
+    return alert(`el producto ${idProducto} no existe`);
   }
 
   return productos[indice];
@@ -44,36 +48,17 @@ const eliminarProducto = () => {
   }
 };
 
-const productos = [
-  {
-    id: 1,
-    nombre: "reishi",
-    precio: 100,
-    stock: 3,
-  },
-
-  {
-    id: 2,
-    nombre: "cordyceps",
-    precio: 150,
-    stock: 4,
-  },
-
-  {
-    id: 3,
-    nombre: "shiitake",
-    precio: 120,
-    stock: 3,
-  },
-  {
-    id: 4,
-    nombre: "melena de Leon",
-    precio: 180,
-    stock: 5,
-  },
-];
 
 let carrito = [];
+
+const totalCarrito = () => {
+  let total = 0;
+  carrito.forEach((producto) => {
+    total += producto.precio;
+  });
+  return total;
+};
+
 let seleccion = prompt("Desea comprar alguno de nuestros productos si o no?");
 
 while (seleccion !== "si" && seleccion != "no") {
@@ -90,7 +75,7 @@ if (seleccion == "si") {
 }
 
 while (seleccion != "no") {
-  let producto = prompt("Por favor elija el codigo del producto que desea agregar al carrito");
+  let producto = parseInt(prompt("Por favor elija el codigo del producto que desea agregar al carrito"));
   let precio = 0;
   if (producto == "reishi" || producto == "cordyceps" || producto == "shiitake" || producto == "Melena de leon") {
     switch (producto) {
@@ -118,31 +103,28 @@ while (seleccion != "no") {
         break;
     }
     carrito.push({ producto, precio });
-    console.log(carrito);
   } else {
     ("no tenemos ese producto");
   }
   seleccion = prompt("desea seguir comprando?");
 
   while (seleccion == "no") {
-    alert("Menú:\n1 - Mostrar carrito\n2 - Eliminar un producto\n3 - Pagar\n4 - Salir");
+    alert("Menú:\n1 - Eliminar un producto\n2 - Pagar\n3 - Salir");
     let opcion = parseInt(prompt("Ingrese una opción"));
 
     switch (opcion) {
       case 1:
-        mostrarCarrito();
-        break;
-      case 2:
         eliminarProducto();
         break;
-      case 3:
-        pagarProductos();
+      case 2:
+        totalCarrito();
         break;
-      case 4:
+      case 3:
         salir();
         break;
       default:
         alert("Ingrese una opcion correcta");
+        break
     }
   }
 }
@@ -196,3 +178,32 @@ while (seleccion != "no") {
 
 // const producto2 = new Producto("portobello", 100, 5);
 // console.log(producto2);
+
+// const productos = [
+//   {
+//     id: 1,
+//     nombre: "reishi",
+//     precio: 100,
+//     stock: 3,
+//   },
+
+//   {
+//     id: 2,
+//     nombre: "cordyceps",
+//     precio: 150,
+//     stock: 4,
+//   },
+
+//   {
+//     id: 3,
+//     nombre: "shiitake",
+//     precio: 120,
+//     stock: 3,
+//   },
+//   {
+//     id: 4,
+//     nombre: "melena de Leon",
+//     precio: 180,
+//     stock: 5,
+//   },
+// ];
