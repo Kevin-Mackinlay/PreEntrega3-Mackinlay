@@ -20,6 +20,7 @@ const mostrarProductos = (productos) => {
       stock: producto.stock,
     };
   });
+  console.log("Tienda FUNGI");
   console.table(arrayProductos);
 };
 
@@ -43,14 +44,14 @@ const eliminarProducto = () => {
 
   if (confirmacion) {
     productos.splice(indice, 1);
-  console.log("El producto fue eliminado");
+  console.log(`El producto con còdigo ${idProducto} fue eliminado.`);
   } else {
     alert("Eliminacion cancelada");
   }
 };
 
 const salir = () => {
-  alert("Gracias por su compra!");
+  alert("Gracias por visitarnos!");
 };
 
 let carrito = [];
@@ -62,6 +63,26 @@ const totalCarrito = () => {
   });
   return total;
 };
+
+const mostrarProductosCarrito = (productosCarrito) => {
+  console.clear();
+
+  if (productosCarrito.length === 0) {
+    console.log("El carrito está vacío.");
+  } else {
+    console.log("Tienda Fungi");
+    console.log("Productos en el carrito:");
+    const arrayProductos = productosCarrito.map((producto) => {
+      return {
+        id: producto.id,
+        nombre: producto.producto,
+        precio: producto.precio,
+      };
+    });
+    console.table(arrayProductos);
+  }
+};
+
 
 let seleccion = prompt("Desea comprar alguno de nuestros productos? (si/no) ");
 
@@ -108,7 +129,7 @@ do {
       break;
     case 2:
        console.log("Carrito:");
-       mostrarProductos(carrito);
+       mostrarProductosCarrito(carrito);
       console.log("Total a pagar: $" + totalCarrito());
       break;
     case 3:
