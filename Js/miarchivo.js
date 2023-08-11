@@ -1,7 +1,30 @@
-let nombre = document.querySelector("#nombre");
-let btn = document.querySelector("#btn");
-let div = document.querySelector("#tarjeta");
-let container = document.querySelector("#container");
+// selecciono Elementos
+const productoselementos = document.querySelector(".productos");
+
+
+let productos = [
+  { id: 0, nombre: "Reishi", precio: 100, stock: 10 },
+  { id: 1, nombre: "Cordyceps", precio: 150, stock: 20 },
+  { id: 2, nombre: "Shiitake", precio: 150, stock: 20 },
+  { id: 3, nombre:"Melena", precio: 200, stock: 15 },
+];
+
+function mostrarProductos() {
+  productos.forEach((producto) => {
+    productoselementos.innerHTML += `
+      <div class="card" id="tarjeta" style="width: 18rem">
+            <h4 class="texto" id="nombre">Reishi</h4>
+            <h6> Precio: $100</h6>
+            <img src="./images/honguito.png" alt="imagen">
+            <button class="btn btn-success">Agregar</button>
+       </div>
+`;
+  });
+}
+mostrarProductos();
+
+
+
 
 // class Producto {
 //   constructor(id, nombre, precio, stock) {
@@ -11,15 +34,6 @@ let container = document.querySelector("#container");
 //     this.stock = stock;
 //   }
 // }
-
-let productos = [{ nombre: Reishi, precio: 100, stock: 10 },
-  {nombre: Cordyceps, precio: 150, stock: 20},
-  {nombre: Shiitake, precio: 150, stock: 20},
-  {nombre: Melena de leon , precio: 200, stock: 15},
-  
-];
-
-
 
 // const mostrarProductos = (productos) => {
 //   console.clear();

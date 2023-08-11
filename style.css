@@ -1,4 +1,4 @@
-h4{
+h4, h6{
     text-align: center;
 }
 
@@ -6,4 +6,15 @@ h4{
    display: flex;
    flex-direction:column;
    margin: 20px;
+   justify-content: center;
+   align-items: center;
+   border-width: 5px;
+   
+   border-color: lightblue;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+   
 }
