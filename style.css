@@ -1,0 +1,9 @@
+h4{
+    text-align: center;
+}
+
+.card{
+   display: flex;
+   flex-direction:column;
+   margin: 20px;
+}
