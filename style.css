@@ -1,20 +1,45 @@
-h4, h6{
-    text-align: center;
+body {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.card{
-   display: flex;
-   flex-direction:column;
-   margin: 20px;
-   justify-content: center;
-   align-items: center;
-   border-width: 5px;
-   
-   border-color: lightblue;
+h1, h3, h4,
+h6, p {
+  text-align: center;
 }
 
-img{
-    width: 100px;
-    height: 100px;
+.caja{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+#sumar, #restar{
    
+    width: 50px;
+    margin-right: 40px;
+    margin-top: 5px;
+    
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+  border-width: 5px;
+  border-color: lightblue;
+}
+
+button {
+  margin-left: 120px;
+  background-color: rgb(238, 153, 92);
+}
+
+.btn-primary {
+  margin-top: 30px;
 }

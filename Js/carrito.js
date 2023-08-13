@@ -1,30 +1,50 @@
 // selecciono Elementos
-const productoselementos = document.querySelector(".productos");
+const productosEl = document.querySelector(".productos");
+const carritoEl = document.querySelector("#carrito");
 
-
+// array de objetos
 let productos = [
   { id: 0, nombre: "Reishi", precio: 100, stock: 10 },
   { id: 1, nombre: "Cordyceps", precio: 150, stock: 20 },
   { id: 2, nombre: "Shiitake", precio: 150, stock: 20 },
-  { id: 3, nombre:"Melena", precio: 200, stock: 15 },
+  { id: 3, nombre: "Melena", precio: 200, stock: 15 },
 ];
 
+let carrito;
+
+//verificamos si no existe una clave llamada carrito y si nos devuelve NUll, entonces la creamos
+if (localStorage.getItem("carrito") === null) {
+  carrito = [];
+}else {
+  carrito = localStorage.getItem("carrito");
+}
+
+//realizo funcion para mostrar productos
+
 function mostrarProductos() {
+  productosEl.innerHTML = " ";
   productos.forEach((producto) => {
-    productoselementos.innerHTML += `
+    let productosBox = document.createElement("div");
+    productosEl.innerHTML += `
       <div class="card" id="tarjeta" style="width: 18rem">
-            <h4 class="texto" id="nombre">Reishi</h4>
-            <h6> Precio: $100</h6>
-            <img src="./images/honguito.png" alt="imagen">
-            <button class="btn btn-success">Agregar</button>
+            <h4>Nombre:${producto.nombre}"</h4>
+            <h6>Precio:${producto.precio}"</h6>
+            <p>Stock: ${producto.stock}"</p>  
        </div>
-`;
+       `;
+    productosEl.appendChild(productosBox);
+
+    //agrego btn agregar
+    let btnAgregar = document.createElement("button");
+    btnAgregar.innerHTML = "Agregar";
+    productosBox.appendChild(btnAgregar);
+
+    btnAgregar.onclick = () => agregarProducto(index);
   });
 }
-mostrarProductos();
 
-
-
+//funcion para agregar producto
+const agregarProducto = (index) => {};
 
 // class Producto {
 //   constructor(id, nombre, precio, stock) {
