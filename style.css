@@ -13,8 +13,7 @@ h1 {
 
 h3 {
   color: rgb(176, 90, 59);
-  text-decoration:underline;
-  
+  text-decoration: underline;
 }
 h4,
 h6,
@@ -50,8 +49,9 @@ p {
 }
 
 button {
-  margin-left: 120px;
-  background-color: rgb(238, 153, 92);
+  background-color: aliceblue;
+  margin: 5px;
+  margin-left: 20px;
 }
 
 .btn-primary {
@@ -70,29 +70,32 @@ iconos {
 }
 
 .items {
+  width: 800px;
+  height: 1000px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .cart {
-  width: 400px;
+  width: auto;
   height: 800px;
   display: flex;
   flex-direction: column;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
   align-content: center;
   gap: 250px;
   background-color: rgba(246, 188, 71, 0.692);
   border-radius: 4px;
-  border-color: rgb(57, 30, 210);
-  border-style: initial;
+  border-color: black;
+ 
 }
 
 .productos {
   display: flex;
-  flex-direction: column;
-  justify-content: left;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 150px;
 }
 
 .cart-header {
@@ -106,6 +109,8 @@ iconos {
 .cart-footer {
   background-color: cornflowerblue;
   width: 400px;
+  height: 50px;
+  margin-top: 50px;
 }
 
 .checkout {
