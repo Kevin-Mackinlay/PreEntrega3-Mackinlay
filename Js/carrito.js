@@ -1,186 +1,181 @@
-// selecciono Elementos
+//llamamos elementos
 const productosEl = document.querySelector(".productos");
-const carritoEl = document.querySelector("#carrito");
+const carritoItemsEl = document.querySelector(".cart-items");
+const carritoItemel = document.querySelector(".cart-item");
 
-// array de objetos
-let productos = [
-  { id: 0, nombre: "Reishi", precio: 100, stock: 10 },
-  { id: 1, nombre: "Cordyceps", precio: 150, stock: 20 },
-  { id: 2, nombre: "Shiitake", precio: 150, stock: 20 },
-  { id: 3, nombre: "Melena", precio: 200, stock: 15 },
-];
-
-let carrito;
-
-//verificamos si no existe una clave llamada carrito y si nos devuelve NUll, entonces la creamos
-if (localStorage.getItem("carrito") === null) {
-  carrito = [];
-}else {
-  carrito = localStorage.getItem("carrito");
-}
-
-//realizo funcion para mostrar productos
-
+//mostramos productos
 function mostrarProductos() {
-  productosEl.innerHTML = " ";
   productos.forEach((producto) => {
-    let productosBox = document.createElement("div");
-    productosEl.innerHTML += `
+    productosEl.innerHTML += ` 
       <div class="card" id="tarjeta" style="width: 18rem">
-            <h4>Nombre:${producto.nombre}"</h4>
-            <h6>Precio:${producto.precio}"</h6>
-            <p>Stock: ${producto.stock}"</p>  
-       </div>
-       `;
-    productosEl.appendChild(productosBox);
-
-    //agrego btn agregar
-    let btnAgregar = document.createElement("button");
-    btnAgregar.innerHTML = "Agregar";
-    productosBox.appendChild(btnAgregar);
-
-    btnAgregar.onclick = () => agregarProducto(index);
+        <h4>${producto.nombre}</h4>
+        <h6>Precio:${producto.precio}</h6>
+        <p>Stock: ${producto.stock}</p>
+        <img src="${producto.imgSrc}" alt="">
+      </div>
+      <div class="add-to-cart" onclick="agregarCarrito(${producto.id})">
+      <button class=" btn btn-success"> Agregar </button>
+      </div>
+    `;
   });
 }
 
-//funcion para agregar producto
-const agregarProducto = (index) => {};
+mostrarProductos();
 
-// class Producto {
-//   constructor(id, nombre, precio, stock) {
-//     this.id = id;
-//     this.nombre = nombre;
-//     this.precio = precio;
-//     this.stock = stock;
-//   }
+//carrito array
+let carrito = [];
+
+// agregar funcion
+
+function agregarCarrito(id) {
+  //chequeamos si el id del producto existe
+  if (carrito.some((item) => item.id === id)) {
+    alert("Este producto ya esta en el carrito!");
+  } else {
+    const item = productos.find((producto) => producto.id === id);
+    carrito.push({
+      ...item,
+      numberOfUnits: 1,
+    });
+  }
+  actualizarCarrito();
+}
+
+// actualizar carrito
+
+function actualizarCarrito() {
+  mostrarCarritoItems();
+  // mostrarSubtotal();
+}
+
+function mostrarCarritoItems() {
+  carritoItemsEl.innerHTML = ""; // borra el elemento del carrito
+  carrito.forEach((item) => {
+    carritoItemsEl.innerHTML += `
+      <div class="cart-item"  style="width: 10rem">
+              <h4>${item.nombre}</h4>
+              <h6>Precio:${item.precio}</h6>
+      </div>
+    
+`;
+  });
+}
+// // selecciono Elementos
+// const productosEl = document.querySelector(".productos");
+// const carritoEl = document.querySelector("#carrito");
+
+// // array de objetos
+// let productos = [
+//   { id: 0, nombre: "Reishi", precio: 100, stock: 10 },
+//   { id: 1, nombre: "Cordyceps", precio: 150, stock: 20 },
+//   { id: 2, nombre: "Shiitake", precio: 150, stock: 20 },
+//   { id: 3, nombre: "Melena", precio: 200, stock: 15 },
+// ];
+
+// let carrito;
+
+// //verificamos si no existe una clave llamada carrito y si nos devuelve NUll, entonces la creamos
+// if (localStorage.getItem("carrito") === null) {
+//   carrito = [];
+// } else {
+//   carrito = JSON.parse(localStorage.getItem("carrito"));
 // }
 
-// const mostrarProductos = (productos) => {
-//   console.clear();
+// //realizo funcion para mostrar productos
 
-//   const arrayProductos = productos.map((producto) => {
-//     return {
-//       id: producto.id,
-//       nombre: producto.nombre,
-//       precio: producto.precio,
-//       stock: producto.stock,
-//     };
+// const mostrarProductos= () => {
+//   productosEl.innerHTML = " ";
+//   productos.forEach((producto, index) => {
+//     let productoBox = document.createElement("div");
+//     productoBox.innerHTML += `
+//       <div class="card" id="tarjeta" style="width: 18rem">
+//             <h4>${producto.nombre}</h4>
+//             <h6>Precio:${producto.precio}</h6>
+//             <p>Stock: ${producto.stock}</p>
+//        </div>
+//        `;
+//     productosEl.appendChild(productoBox);
+
+//     //agrego btn agregar
+//     let btnAgregar = document.createElement("button");
+//     btnAgregar.innerHTML = "Agregar";
+//     productoBox.appendChild(btnAgregar);
+
+//     btnAgregar.onclick = () => agregarProducto(index);
 //   });
-//   console.log("Tienda FUNGI");
-//   console.table(arrayProductos);
-// };
+// }
 
-// const productos = [new Producto(1, "reishi", 100, 3), new Producto(2, "cordyceps", 150, 5), new Producto(3, "shiitake", 120, 3), new Producto(4, "melena de leon", 200, 10)];
+// //funcion para agregar producto
+// const agregarProducto = (index) => {
+//   //agregamos la cantidad del contador
+//   productos[index].cantidad = contador; //variable contador de archivo contador.js
 
-// mostrarProductos(productos);
-
-// const eliminarProducto = () => {
-//   let idProducto = parseInt(prompt("Ingrese el código del item que desea borrar"));
-
-//   let indice = productos.findIndex((producto) => producto.id == idProducto );
-
-//   if (indice === -1){
-//     alert(`El producto con códigpo ${idProducto} no existe`);
-//     return;
+//   //verificamos que haya cantidad y que no supere el stock
+//   if (contador > productos[index].stock) {
+//     return alert(`no hay stock suficiente el màximo de productos es ${productos[index].stock}`);
 //   }
 
-//   const productoEliminar = productos[indice];
-//   const confirmacion = confirm("Esta seguro que quiere eliminar este prducto?");
-
-//   if (confirmacion) {
-//     productos.splice(indice, 1);
-//   console.log(`El producto con còdigo ${idProducto} fue eliminado.`);
-//   } else {
-//     alert("Eliminacion cancelada");
+//   //validamos que el usuario agregue mìnimo 1 producto
+//   if (contador === 0) {
+//     return alert("debe agregar al menos 2 producto al carrito");
 //   }
+
+//   // parse el carrito data del localStorage
+//   carrito = JSON.parse(localStorage.getItem("carrito"));
+
+//   // Agregamos el producto al carrito con su cantidad tomada del contador general
+//   carrito.push(productos[index]);
+
+//   //guardamos el carrito en el localstorage psandolo a JSON
+//   localStorage.setItem("carrito", JSON.stringify(carrito));
+
+//   // descontamos el stock del producto
+//   productos[index].stock -= contador;
+
+//   //ponemos el contador en 0 y lo actualizamos
+//   contador = 0;
+//   actualizarContador(); //funcion de archivo contador.js
+
+//   //mostramos los productos y el carritp actualizado
+//   mostrarProductos();
+//   mostrarCarrito();
 // };
 
-// const salir = () => {
-//   alert("Gracias por visitarnos!");
-// };
+// const mostrarCarrito = () => {
 
-// let carrito = [];
+//   carritoEl.innerHTML = " ";
 
-// const totalCarrito = () => {
-//   let total = 0;
+//   //traemos el carrito del localstorage y lo parseamos para que lo pueda leer javascript
+//   carrito = JSON.parse(localStorage.getItem("carrito"));
+
+//   if (carrito === null) {
+//     return; //hacer exit si la funcion carrito es null
+//   }
+
 //   carrito.forEach((producto) => {
-//     total += producto.precio;
+//     let productoBox = document.createElement("div");
+//     productoBox.innerHTML = `
+
+//             <p>${producto.nombre}</p>
+//             <p>Precio:${producto.precio}</p>
+//             <p>Cantidad:${producto.cantidad}</p>
+//             <p>Subtotal:${producto.precio * producto.cantidad}</p>
+
+//        `;
+//     carritoEl.appendChild(productoBox);
 //   });
-//   return total;
-// };
 
-// const mostrarProductosCarrito = (productosCarrito) => {
-//   console.clear();
+//   //agregamos un boton para vaciar el carrito
+//   let vaciarCarrito = document.createElement("button");
+//   vaciarCarrito.innerHTML = "Vaciar carrito";
+//   carritoEl.appendChild(vaciarCarrito);
 
-//   if (productosCarrito.length === 0) {
-//     console.log("El carrito está vacío.");
-//   } else {
-//     console.log("Tienda Fungi");
-//     console.log("Productos en el carrito:");
-//     const arrayProductos = productosCarrito.map((producto) => {
-//       return {
-//         id: producto.id,
-//         nombre: producto.producto,
-//         precio: producto.precio,
-//       };
-//     });
-//     console.table(arrayProductos);
+//   vaciarCarrito.onclick = () => {
+//     carrito = [];
+//     localStorage.setItem("carrito", JSON.stringify(carrito));
+//     mostrarCarrito();
 //   }
 // };
 
-// let seleccion = prompt("Desea comprar alguno de nuestros productos? (si/no) ");
-
-// while (seleccion !== "si" && seleccion != "no") {
-//   alert("si o no?");
-//   seleccion = prompt("Desea comprar? si/no").toLowerCase();
-// }
-
-// if (seleccion === "si") {
-//   alert("ok, estos son los productos disponibles");
-//   let losProductos = productos.map((producto) => producto.id + "- " + producto.nombre + " - " + "$" + producto.precio + " - " + "(" + producto.stock + " en stock)");
-//   alert(losProductos.join(" \n "));
-// } else if (seleccion === "no") {
-//   alert("gracias por visitarnos!");
-// }
-
-// let continuarComprando = "si";
-
-// while (continuarComprando === "si") {
-//   let idProducto = parseInt(prompt("Por favor ingrese el código del producto que desea agregar al carrito"));
-//   let producto = productos.find((producto) => producto.id === idProducto);
-
-//   if (!producto) {
-//     alert(`El producto con código ${idProducto} no existe.`);
-//     continuarComprando = prompt("¿Desea seguir comprando? (si/no)").toLowerCase();
-//     continue;
-//   }
-
-//   carrito.push({ id: producto.id, producto: producto.nombre, precio: producto.precio });
-
-//   continuarComprando = prompt("¿Desea seguir comprando? (si/no)").toLowerCase();
-// }
-
-// // alert("Gracias por su compra!")
-
-// let opcionMenu;
-// do {
-//   alert("Menú:\n1 - Eliminar un producto\n2 - Total carrito\n3 - Salir");
-//   opcionMenu = parseInt(prompt("Ingrese una opción"));
-
-//   switch (opcionMenu) {
-//     case 1:
-//       eliminarProducto();
-//       break;
-//     case 2:
-//        console.log("Carrito:");
-//        mostrarProductosCarrito(carrito);
-//       console.log("Total a pagar: $" + totalCarrito());
-//       break;
-//     case 3:
-//       salir();
-//       break;
-//     default:
-//       alert("Ingrese una opcion correcta");
-//       break;
-//   }
-// } while (opcionMenu  !== 3);
+// mostrarProductos();
+// mostrarCarrito();

@@ -8,25 +8,38 @@
     <title>PreEntrega2 Mackinlay</title>
   </head>
   <body>
-    <h1 class="title">Tienda Fungi</h1>
+    <header>
+      <nav>
+        <h1 class="title">Tienda Fungi</h1>
+      </nav>
+    </header>
     <p>Estos son nuestros productos</p>
+    <div class="items">
+      <div class="productos">
+        <!-- mostrar productos aca-->
+      </div>
+      <div class="cart">
+        <div class="cart-header">
+         <h3>Carrito</h3>
+        </div>
 
-    <div class="caja">
-      <h3>Contador</h3>
-      <p>Contador: <span id="contador">0</span></p>
-      <button id="sumar">+</button>
-      <button id="restar">-</button>
+        <div class="cart-items">
+          <!--mostrar carrito items aca-->
+          <div class="cart-item">
+            <!-- <div class="units">
+              <div class="btn menos">-</div>
+              <div class="numbero">1</div>
+              <div class="btn mas">+</div>
+            </div> -->
+          </div>
+        </div>
+        <div class="cart-footer">
+          <div class="subtotal">Subtotal (0 items): $0</div>
+          <div class="checkout">Proceder a pagar</div>
+        </div>
+      </div>
     </div>
-
-    <div class="productos">
-   
-    </div>
-   
-
-    <div class="container" id="carrito">
-     <h4>Carrito</h4>
-    </div>
-
-    <script src="js/miarchivo.js"></script>
+    <script src="Js/productos.js"></script>
+    <script src="Js/carrito.js"></script>
   </body>
 </html>
