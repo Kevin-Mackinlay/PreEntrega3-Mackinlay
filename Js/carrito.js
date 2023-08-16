@@ -26,7 +26,22 @@ const mostrarProductos = () => {
       `;
     productoBox.appendChild(btnAgregar);
 
+
     btnAgregar.onclick = () => agregarCarrito(index);
+
+    
+
+    btnAgregar.addEventListener("click", () => {
+      swal.fire({
+        title: "Genial",
+        text: "Haz agregado estre producto al carrito",
+        icon: "success",
+        confirmButtonText: "ok",
+      });
+    });
+
+    
+  
 
     let btnEliminar = document.createElement("button");
     btnEliminar.innerHTML = `
@@ -36,6 +51,18 @@ const mostrarProductos = () => {
     productoBox.appendChild(btnEliminar);
 
     btnEliminar.onclick = () => eliminarItemCarrito(index);
+
+    btnEliminar.addEventListener("click", () => {
+      Toastify({
+        text: "Producto eliminado!",
+        duration: 2000,
+        gravity: "top",
+        position: "right",
+        style: {
+          background: "linear-gradient(to right, #ed754a,  #e9a187 ",
+        },
+      }).showToast();
+    })
   });
 };
 
