@@ -1,4 +1,27 @@
-body {
+nav {
+  margin-bottom: 1em !important;
+}
+
+.cart {
+  box-shadow: 0 0 5px #DDD;
+  padding: 20px;
+}
+
+.tiny {
+   background-color: rgba(208, 115, 28, 0.896) !important;
+    border-radius: 4px;
+}
+
+
+a{
+  color:  rgb(219, 130, 7) !important;
+}
+
+
+
+
+
+/* body {
 
   display: flex;
   flex-direction: column;
@@ -15,7 +38,7 @@ h1 {
 }
 
 h3 {
-  color: #ce7251;
+  color: #c89641;
   text-decoration: underline;
 }
 h4,
@@ -90,7 +113,7 @@ iconos {
   align-items: center;
   align-content: space-between;
   gap: 250px; */
-  background-color: rgba(246, 188, 71, 0.692);
+  /* background-color: rgba(246, 188, 71, 0.692);
   border-radius: 4px;
   border-color: black;
  
@@ -131,4 +154,4 @@ iconos {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 10px;
-}
+/* } */ 
