@@ -15,10 +15,11 @@ const renderProducts = () => {
                 <h3>${product.name}</h3>
                 <input type="text" class="count" value="${product.stock}" />
                 <button class="tiny" ${product.stock <= 0 ? "disabled" : ""}>Add to cart</button>
+                <button class="tiny eliminate">Eliminate</button>
             </div>`;
     productsEl.appendChild(productBox);
 
-    let btnAdd = productBox.querySelector("button"); // Select the button element
+    let btnAdd = productBox.querySelector(".tiny:not(.eliminate"); // Select the button element
     btnAdd.onclick = () => addToCart(product.id);
     // Add click event listener to the button
     btnAdd.addEventListener("click", () => {
@@ -36,20 +37,25 @@ const renderProducts = () => {
         },
       }).showToast();
     });
+
+    let btnEliminate = productBox.querySelector(".eliminate");
+
+    btnEliminate.addEventListener("click", () => {
+      eliminateFromCart(product.id);
+      Toastify({
+        text: "item eliminated",
+        duration: 2000,
+        gravity: "center",
+        position: "right",
+        style: {
+          background: "linear-gradient(to right, #ea3e3e  ,  #dd8080  ",
+        },
+      }).showToast();
+    });
   });
 };
 
 renderProducts();
-
-clearCartEl.addEventListener("click", clear);
-const clearCart = () => {
-  // Clear the cart array
-  cart = [];
-  // Clear localStorage
-  localStorage.removeItem("cart");
-  // Update the cart display
-  updateCart();
-};
 
 // array cart
 let cart;
@@ -60,22 +66,29 @@ if (localStorage.getItem("cart") === null) {
   cart = JSON.parse(localStorage.getItem("cart"));
 }
 
-const countRemainingStock = () => {
-  products.forEach((product) => {
-    let remainingStock = product.stock;
-
-    cart.forEach((item) => {
-      if (item.id === product.id) {
-        remainingStock -= item.numberOfUnits;
-      }
-    });
-
-    product.remainingStock = remainingStock;
-  });
+const eliminateFromCart = (id) => {
+  cart = cart.filter((item) => item.id !== id);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCart();
+  renderProducts();
 };
 
+// const countRemainingStock = () => {
+//   products.forEach((product) => {
+//     let remainingStock = product.stock;
+
+//     cart.forEach((item) => {
+//       if (item.id === product.id) {
+//         remainingStock -= item.numberOfUnits;
+//       }
+//     });
+
+//     product.remainingStock = remainingStock;
+//   });
+// };
+
 const updateCart = () => {
-  countRemainingStock();
+  //   countRemainingStock();
   renderTotalPrice();
 };
 
@@ -94,8 +107,15 @@ const addToCart = (id) => {
     console.log("Cart updated:", cart);
   }
   updateCart();
-  countRemainingStock();
+  //   countRemainingStock();
 };
+
+const clearCart = () => {
+  cart = [];
+  localStorage.removeItem("cart");
+  renderTotalPrice();
+};
+clearCartEl.addEventListener("click", clearCart);
 
 const renderTotalPrice = () => {
   let totalPrice = 0;
