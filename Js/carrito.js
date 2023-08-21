@@ -5,57 +5,64 @@ const subtotalEl = document.querySelector(".subtotal");
 const totalPriceEl = document.querySelector("#totalPrice");
 const clearCartEl = document.getElementById("clear");
 
+
 const renderProducts = () => {
   productsEl.innerHTML = " ";
-  products.forEach((product, index) => {
-    let productBox = document.createElement("div");
-    productBox.innerHTML = `
-             <div class="product medium-4 columns" data-name=${product.name} data-price= ${product.price} data-id=${product.id}>
-                <img src= ${product.imgSrc} alt=${product.name} />
-                <h3>${product.name}</h3>
-                <input type="text" class="count" value="${product.stock}" />
-                <button class="tiny" ${product.stock <= 0 ? "disabled" : ""}>Add to cart</button>
-                <button class="tiny eliminate">Eliminate</button>
-            </div>`;
-    productsEl.appendChild(productBox);
+  fetch("/products.json")
+    .then((resp) => resp.json())
+    .then((data) => {
+      data.forEach((product) => {
+        let productBox = document.createElement("div");
+        productBox.innerHTML = `
+          <div class="product medium-4 columns" data-name=${product.name} data-price=${product.price} data-id=${product.id}>
+            <img src=${product.imgSrc} alt=${product.name} />
+            <h3>${product.name}</h3>
+            <input type="text" class="count" value="${product.stock}" />
+            <button class="tiny" ${product.stock <= 0 ? "disabled" : ""}>Add to cart</button>
+            <button class="tiny eliminate">Eliminate</button>
+          </div>`;
+        productsEl.appendChild(productBox);
 
-    let btnAdd = productBox.querySelector(".tiny:not(.eliminate"); // Select the button element
-    btnAdd.onclick = () => addToCart(product.id);
-    // Add click event listener to the button
-    btnAdd.addEventListener("click", () => {
-      if (product.stock <= 0) {
-        alert("This product is out of stock.");
-        return;
-      }
-      Toastify({
-        text: "Added product!",
-        duration: 2000,
-        gravity: "center",
-        position: "right",
-        style: {
-          background: "linear-gradient(to right, #5bce51 ,  #bcedb8  ",
-        },
-      }).showToast();
+        let btnAdd = productBox.querySelector(".tiny:not(.eliminate)");
+        btnAdd.onclick = () => addToCart(product.id);
+        btnAdd.addEventListener("click", () => {
+          if (product.stock <= 0) {
+            alert("This product is out of stock.");
+            return;
+          }
+          Toastify({
+            text: "Added product!",
+            duration: 2000,
+            gravity: "center",
+            position: "right",
+            style: {
+              background: "linear-gradient(to right, #5bce51 ,  #bcedb8  ",
+            },
+          }).showToast();
+        });
+
+        let btnEliminate = productBox.querySelector(".eliminate");
+        btnEliminate.addEventListener("click", () => {
+          eliminateFromCart(product.id);
+          Toastify({
+            text: "Item eliminated",
+            duration: 2000,
+            gravity: "center",
+            position: "right",
+            style: {
+              background: "linear-gradient(to right, #ea3e3e  ,  #dd8080  ",
+            },
+          }).showToast();
+        });
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
     });
-
-    let btnEliminate = productBox.querySelector(".eliminate");
-
-    btnEliminate.addEventListener("click", () => {
-      eliminateFromCart(product.id);
-      Toastify({
-        text: "item eliminated",
-        duration: 2000,
-        gravity: "center",
-        position: "right",
-        style: {
-          background: "linear-gradient(to right, #ea3e3e  ,  #dd8080  ",
-        },
-      }).showToast();
-    });
-  });
 };
 
 renderProducts();
+
 
 // array cart
 let cart;
